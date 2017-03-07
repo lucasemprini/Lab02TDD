@@ -1,0 +1,4 @@
+*.pdf
+bin
+out
+.idea/workspace.xml
