@@ -6,13 +6,13 @@ import java.util.Optional;
 /**
  * Step 2
  *
- * Forget about class u02lab.code.RangeGenerator. Using TDD approach (create small test, create code that pass test, refactor
+ * Now consider a RandomGenerator. Using TDD approach (create small test, create code that pass test, refactor
  * to excellence) implement the below class that represents a sequence of n random bits (0 or 1). Recall
  * that math.random() gives a double in [0,1]..
  * Be sure to test all that is needed, as before
  *
  * When you are done:
- * A) try to refactor the code according to DRY (u02lab.code.RandomGenerator vs u02lab.code.RangeGenerator)?
+ * A) try to refactor the code according to DRY (RandomGenerator vs RangeGenerator), using patterns as needed
  * - be sure tests still pass
  * - refactor the test code as well
  * B) create an abstract factory for these two classes, and implement it

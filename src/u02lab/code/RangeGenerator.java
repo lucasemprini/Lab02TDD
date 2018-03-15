@@ -10,9 +10,9 @@ import java.util.Optional;
  * implement the below class that represents the sequence of numbers from start to stop included.
  * Be sure to test that:
  * - the produced elements (called using next(), go from start to stop included)
- * - calling next after stop has been produced, lead to a Optional.empty
+ * - calling next after stop leads to a Optional.empty
  * - calling reset after producing some elements brings the object back at the beginning
- * - isOver can actually be called in the middle and gives false, at the end and gives true
+ * - isOver can actually be called in the middle and should give false, at the end it gives true
  * - can produce the list of remaining elements in one shot
  */
 public class RangeGenerator implements SequenceGenerator {
