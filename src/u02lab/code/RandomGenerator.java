@@ -1,5 +1,7 @@
 package u02lab.code;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,27 +21,45 @@ import java.util.Optional;
  */
 public class RandomGenerator implements SequenceGenerator {
 
-    public RandomGenerator(int n){
+    private final List<Integer> range = new ArrayList<>();
+    private int currentIndex = 0;
+    private static final double RANDOMFACTOR = 0.5;
 
+    public RandomGenerator(int n){
+        for(int i = 0; i < n; i++) {
+            range.add(Math.random() > RANDOMFACTOR ? 1 : 0);
+        }
     }
 
     @Override
     public Optional<Integer> next() {
-        return Optional.empty();
+        if(isOver()) {
+            return Optional.empty();
+        } else {
+            final Integer toReturn = range.get(currentIndex);
+            currentIndex++;
+            return Optional.of(toReturn);
+        }
     }
 
     @Override
     public void reset() {
-
+        currentIndex = 0;
     }
 
     @Override
     public boolean isOver() {
-        return false;
+        return currentIndex >= range.size();
     }
 
     @Override
     public List<Integer> allRemaining() {
-        return null;
+        if(isOver()) {
+            return Collections.unmodifiableList(new ArrayList<>());
+        } else {
+            final List<Integer> toReturn = range.subList(currentIndex, range.size());
+            currentIndex = range.size();
+            return Collections.unmodifiableList(toReturn);
+        }
     }
 }

@@ -1,7 +1,6 @@
 package u02lab.code;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Step 1
@@ -17,27 +16,44 @@ import java.util.Optional;
  */
 public class RangeGenerator implements SequenceGenerator {
 
-    public RangeGenerator(int start, int stop){
+    private final List<Integer> range = new ArrayList<>();
+    private int currentIndex = 0;
 
+    public RangeGenerator(int start, int stop){
+        for(int i = start; i <= stop; i++) {
+            range.add(i);
+        }
     }
 
     @Override
     public Optional<Integer> next() {
-        return Optional.empty();
+            if(isOver()) {
+                return Optional.empty();
+            } else {
+                final Integer toReturn = range.get(currentIndex);
+                currentIndex++;
+                return Optional.of(toReturn);
+            }
     }
 
     @Override
     public void reset() {
-
+        currentIndex = 0;
     }
 
     @Override
     public boolean isOver() {
-        return false;
+        return currentIndex >= range.size();
     }
 
     @Override
     public List<Integer> allRemaining() {
-        return null;
+        if(isOver()) {
+            return Collections.unmodifiableList(new ArrayList<>());
+        } else {
+            final List<Integer> remaining = range.subList(currentIndex, range.size());
+            currentIndex = range.size();
+            return Collections.unmodifiableList(remaining);
+        }
     }
 }
